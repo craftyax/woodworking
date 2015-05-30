@@ -3,7 +3,7 @@
 Script for designing a trapezoidal shelf with an arbitrary number
 of intervening shelves at defined heights.
 
-                                   
+                       <----------S_t----------->     
           Shelf Top   /--------------------------\                    -
                      /_______Top Shelf____________\
                     / /<-----------A------------>\ \
@@ -21,15 +21,24 @@ of intervening shelves at defined heights.
             <------------------------B----------------------> 
 
 Note: To find base interior width, simply compute the shelf width for h_i = 0
+
+A given S_t and thickness...
+A = S_t + 2*thick*(sin(TH) - 1/cos(TH))
+
 '''
 
 import numpy as np
 import sys
 
 th = float(sys.argv[1]) # deg, Vertical shelf angle
-A = float(sys.argv[2]) # Top shelf width
+S_t = float(sys.argv[2]) # Top shelf width
 H = float(sys.argv[3]) # Total shelf height
-h_i = float(sys.argv[4]) # Variable shelf height
+h_i = float(sys.argv[4]) # Variable shelf heigh
+t
+thick = 0.75 # Board thickness
+
+# Calculate bottom internal width of top shelf
+A = S_t + 2*thick*(np.sin(np.radians(th)) - 1.0/np.cos(np.radians(th)))
 
 def Shelf(H, h_i, th):
     '''
