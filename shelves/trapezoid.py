@@ -33,8 +33,13 @@ import sys
 th = float(sys.argv[1]) # deg, Vertical shelf angle
 S_t = float(sys.argv[2]) # Top shelf width
 H = float(sys.argv[3]) # Total shelf height
-h_i = float(sys.argv[4]) # Variable shelf heigh
-t
+
+hei = sys.argv[4] # Variable shelf heigh
+hei = hei.split()
+N = len(hei) # Number of shelves (including top)
+h_i = np.array([float(hei[i]) for i in range(N)])
+print h_i
+
 thick = 0.75 # Board thickness
 
 # Calculate bottom internal width of top shelf
