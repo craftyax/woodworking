@@ -38,7 +38,6 @@ hei = sys.argv[4] # Variable shelf heigh
 hei = hei.split()
 N = len(hei) # Number of shelves (including top)
 h_i = np.array([float(hei[i]) for i in range(N)])
-print h_i
 
 thick = 0.75 # Board thickness
 
@@ -58,6 +57,9 @@ def Side(H, th):
     '''
 
     return H/np.cos(np.radians(th))
+
+# Define shelf widths at top of shelf
+S_i = Shelf(H, h_i, th)
 
 print "          Shelf Top   /--------------------------\                    -" 
 print "                     /_______Top Shelf____________\                    " 
@@ -87,5 +89,11 @@ print "COMPUTED SHELF PROPERTIES:\n"
 print "Interior base width = ", Shelf(H, 0., th)
 print "Shelf width = ", Shelf(H, h_i, th)
 
-print "\nSide length = ", Side(H, th)
+print "\nSide length = ", Side(H-thick, th)
 
+print "\nINSTRUCTIONS:\n"
+print "For top of shelf, cut at symmetric, outward ", str(th), " degree angles\nspaced ", str(S_t), " units apart.\n"
+for i in range(N):
+    print "Cut shelf ", i, " at symmetric, outward ", str(th), " degree angles\nspaced ", str(S_i[i]), " units apart.\n"
+
+print "For sides, secure boards together and cut at ", th, " degrees in same\ndirection on each end separated by ", str(Side(H-thick, th)), " units.\n"
